@@ -1,5 +1,6 @@
 import { useState, useCallback, useDeferredValue } from "react";
 import CustomTest from "./CustomTest.tsx";
+import CustomTestAI from "./CustomTestAI.tsx";
 import ExcalidrawWrapper from "./ExcalidrawWrapper.tsx";
 import Testcases from "./Testcases.tsx";
 import { parseMermaid } from "../src/parseMermaid.ts";
@@ -52,6 +53,40 @@ const App = () => {
 
   return (
     <>
+      <div style={{ width: "50%", display: "flex" }}>
+        <section id="custom-test-ai">
+          <h1>{"Custom Test AI"}</h1>
+          {"Supports only "}
+          <a
+            target="_blank"
+            href="https://mermaid.js.org/syntax/flowchart.html"
+          >
+            {"Flowchart"}
+          </a>
+          {", "}
+          <a
+            target="_blank"
+            href="https://mermaid.js.org/syntax/sequenceDiagram.html"
+          >
+            {"Sequence "}
+          </a>
+          {"and "}
+          <a
+            target="_blank"
+            href="https://mermaid.js.org/syntax/classDiagram.html"
+          >
+            {"Class "}
+          </a>
+          {"diagrams."}
+          <br />
+          <CustomTestAI
+            activeTestCaseIndex={activeTestCaseIndex}
+            mermaidData={deferredMermaidData}
+            onChange={handleOnChange}
+          />
+        </section>
+      </div>
+
       <div style={{ width: "50%", display: "flex" }}>
         <section id="custom-test">
           <h1>{"Custom Test"}</h1>

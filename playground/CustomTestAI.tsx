@@ -1,7 +1,7 @@
 import { MermaidDiagram } from "./MermaidDiagram.tsx";
 import type { ActiveTestCaseIndex, MermaidData } from "./index.tsx";
 
-interface CustomTestProps {
+interface CustomTestAIProps {
   onChange: (
     definition: MermaidData["definition"],
     activeTestCaseIndex: ActiveTestCaseIndex
@@ -10,12 +10,12 @@ interface CustomTestProps {
   activeTestCaseIndex: ActiveTestCaseIndex;
 }
 
-const CustomTest = ({
+const CustomTestAI = ({
   onChange,
   mermaidData,
   activeTestCaseIndex,
-}: CustomTestProps) => {
-  const isActive = activeTestCaseIndex === "custom";
+}: CustomTestAIProps) => {
+  const isActive = activeTestCaseIndex === "custom-ai";
   return (
     <>
       <form
@@ -24,7 +24,7 @@ const CustomTest = ({
 
           const formData = new FormData(e.target as HTMLFormElement);
 
-          onChange(formData.get("mermaid-input")?.toString() || "", "custom");
+          onChange(formData.get("mermaid-input")?.toString() || "", "custom-ai");
         }}
       >
         <textarea
@@ -37,7 +37,7 @@ const CustomTest = ({
               return;
             }
 
-            onChange(e.target.value, "custom");
+            onChange(e.target.value, "custom-ai");
           }}
           style={{ marginTop: "1rem" }}
           placeholder="Input Mermaid Syntax"
@@ -52,12 +52,12 @@ const CustomTest = ({
         <>
           <MermaidDiagram
             definition={mermaidData.definition}
-            id="custom-diagram"
+            id="custom-ai-diagram"
           />
 
           <details id="parsed-data-details">
             <summary>{"Parsed data from parseMermaid"}</summary>
-            <pre id="custom-parsed-data">
+            <pre id="custom-ai-parsed-data">
               {JSON.stringify(mermaidData.output, null, 2)}
             </pre>
             {mermaidData.error && <div id="error">{mermaidData.error}</div>}
@@ -68,4 +68,4 @@ const CustomTest = ({
   );
 };
 
-export default CustomTest;
+export default CustomTestAI;
